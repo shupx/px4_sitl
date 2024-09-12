@@ -9,10 +9,7 @@
     <!-- px4 gazebo config -->
     <arg name="vehicle" default="standard_vtol"/> <!-- iris, plane, standard_vtol -->
     <arg name="gazebo_gui" default="true"/> <!-- launch gazebo UI -->
-    <arg name="default_world" default="$(find px4_sitl)/worlds/empty.world"/>
-    <arg name="world_origin_latitude_deg" default="39.4203725"/>
-    <arg name="world_origin_longitude_deg" default="116.0867398"/>
-    <arg name="world_origin_altitude" default="488.0"/>
+    <arg name="world" default="$(find px4_sitl)/worlds/empty.world"/>
     
     <!-- vehicle initial pose -->
     <arg name="x" default="0"/>
@@ -26,10 +23,7 @@
     <!-- Gazebo sim -->
     <include file="$(find px4_sitl)/launch/empty_world.launch">
         <arg name="gui" value="$(arg gazebo_gui)"/>
-        <arg name="world_name" value="$(arg default_world)"/>
-    	<arg name="world_origin_latitude_deg" value="$(arg world_origin_latitude_deg)"/>
-    	<arg name="world_origin_longitude_deg" value="$(arg world_origin_longitude_deg)"/>
-    	<arg name="world_origin_altitude" value="$(arg world_origin_altitude)"/>
+        <arg name="world_name" value="$(arg world)"/>
     </include>
     
     <group ns="$(arg namespace)">

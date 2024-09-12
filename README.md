@@ -1,6 +1,6 @@
 # px4_sitl
 
-This is a ROS package containing the px4 SITL (Software In The Loop) targets and gazebo simulation plugins. All these targets and plugins are compiled from the [PX4 source code](https://github.com/PX4/PX4-Autopilot). The aim of this package is to simpilify the process of PX4 SITL simulation with gazebo as all the targets are prebuilt.
+This is a ROS package containing the px4 SITL (Software In The Loop) targets and gazebo simulation plugins. All these targets and plugins are compiled from the [PX4 source code](https://github.com/PX4/PX4-Autopilot). The aim of this package is to simpilify the process of PX4 SITL simulation with gazebo as all the targets are prebuilt. **No need for downloading PX4 source code anymore!**
 
 ## Dependencies
 
@@ -65,3 +65,12 @@ and substitute the `build/px4_sitl_default/bin` folder:
 ```bash
 cp -r ~/PX4-Autopilot/build/px4_sitl_default/bin ~/px4_sitl_ws/src/px4_sitl/build/px4_sitl_default/bin
 ```
+
+Instructions:
+
+![img](pictures/build_instructions.jpg)
+
+- `bin/`: The PX4 software exectuables. (All copied)
+- `build_gazebo-classic/`: The libgazebo plugins. (Some reserved)
+- `etc/`: launch PX4 SITL related. (All copied)
+- other files: useless and deleted.
