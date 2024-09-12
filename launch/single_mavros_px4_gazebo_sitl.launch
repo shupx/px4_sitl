@@ -7,7 +7,7 @@
     <arg name="namespace" default="uav1"/>
     
     <!-- px4 gazebo config -->
-    <arg name="vehicle" default="standard_vtol"/>
+    <arg name="vehicle" default="standard_vtol"/> <!-- iris, plane, standard_vtol -->
     <arg name="gazebo_gui" default="true"/> <!-- launch gazebo UI -->
     <arg name="default_world" default="$(find px4_sitl)/worlds/empty.world"/>
     <arg name="world_origin_latitude_deg" default="39.4203725"/>
