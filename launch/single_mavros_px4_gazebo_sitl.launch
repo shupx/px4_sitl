@@ -3,7 +3,7 @@
     <!-- MAVROS posix SITL environment launch script -->
     <!-- launches Gazebo environment and 2x: MAVROS, PX4 SITL, and spawns vehicle -->
     
-    <arg name="ID" value="1"/>
+    <arg name="ID" default="1"/>
     <arg name="namespace" default="uav1"/>
     
     <!-- px4 gazebo config -->
