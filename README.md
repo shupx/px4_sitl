@@ -51,7 +51,7 @@ vehicle: iris, plane, standard_vtol # px4 sitl vehicle type
 gazebo_gui: true, false # open gazebo UI or not
 ```
 
-You will launch `PX4 software simulation` + `gazebo gzserver` + `mavros node`.
+You will launch `PX4 software simulation` + `gazebo gzserver` + `gazebo_ros vehicle spawn` + `mavros node`.
 
 ## Develop
 
