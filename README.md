@@ -51,6 +51,8 @@ vehicle: iris, plane, standard_vtol # px4 sitl vehicle type
 gazebo_gui: true, false # open gazebo UI or not
 ```
 
+You will launch `PX4 software simulation` + `gazebo gzserver` + `mavros node`.
+
 ## Develop
 
 For a modified PX4 source code, compile the PX4 SITL in the source repo :
@@ -66,7 +68,9 @@ and substitute the `build/px4_sitl_default/bin` folder:
 cp -r ~/PX4-Autopilot/build/px4_sitl_default/bin ~/px4_sitl_ws/src/px4_sitl/build/px4_sitl_default/bin
 ```
 
-Instructions:
+### Instructions:
+
+The folder `build/` is copied from `PX4-Autopilot/build` with deletion of useless files:
 
 ![img](pictures/build_instructions.jpg)
 
@@ -74,3 +78,7 @@ Instructions:
 - `build_gazebo-classic/`: The libgazebo plugins. (Some reserved)
 - `etc/`: launch PX4 SITL related. (All copied)
 - other files: useless and deleted.
+
+The folders`models/` and `/worlds` are copied from `PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic`.
+
+The file `launch/empty_world.launch` is copied from `gazebo_ros/launch`.
