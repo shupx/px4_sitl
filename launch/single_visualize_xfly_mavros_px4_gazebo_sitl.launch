@@ -20,6 +20,10 @@
     <arg name="P" default="0"/>
     <arg name="Y" default="0"/>
     
+    <!-- sss visualize gps origin -->
+    <arg name="world_origin_latitude_deg" default="39.4203725"/>
+    <arg name="world_origin_longitude_deg" default="116.0867398"/>
+    <arg name="world_origin_AMSL_alt_metre" default="488.0"/>    
     
     <!-- Gazebo world -->
     <group if="$(arg enable_gzserver)">
@@ -56,5 +60,21 @@
             <arg name="tgt_system" value="$(arg ID)"/>
             <arg name="tgt_component" value="1"/>
         </include>
+            
     </group>
+    
+        <!-- xfly sky end -->
+        <include file="$(find xfly)/launch/sim_vtol.launch">
+            <arg name="namespace" value="$(arg namespace)"/>
+        </include>
+    
+        <!-- Visualize in rviz -->
+        <include file="$(find fw_plane_sim)/launch/fw_plane_visualizer_single.launch">
+            <arg name="open_rviz" value="false"/>
+            <arg name="namespace" value="$(arg namespace)"/>
+            <arg name="local_pos_source" value="1"/>
+            <arg name="world_origin_latitude_deg" value="$(arg world_origin_latitude_deg)"/>
+            <arg name="world_origin_longitude_deg" value="$(arg world_origin_longitude_deg)"/>
+            <arg name="world_origin_AMSL_alt_metre" value="$(arg world_origin_AMSL_alt_metre)"/>
+        </include>
 </launch>
