@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- start gazebo client (UI) -->
+    <node name="gazebo_gui_single" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen" args=""
+    required="false"/>
+
+</launch>
