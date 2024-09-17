@@ -50,11 +50,25 @@
         <arg name="local_port" value="$(eval 14540+arg('ID')-1 if arg('ID')&lt;10 else 14549)"/>
         <arg name="sitl_port" value="$(eval 14580 + arg('ID') -1)"/>
         <arg name="fcu_url" default="udp://:$(arg local_port)@localhost:$(arg sitl_port)"/>
-        <include file="$(find mavros)/launch/px4.launch">
+	<arg name="pluginlists_yaml" value="$(find mavros)/launch/px4_pluginlists.yaml" />
+	<arg name="config_yaml" value="$(find mavros)/launch/px4_config.yaml" />
+	<node pkg="mavros" type="mavros_node" name="mavros" required="false" clear_params="true" output="screen" respawn="false">
+		<param name="fcu_url" value="$(arg fcu_url)" />
+		<param name="gcs_url" value="" />
+		<param name="target_system_id" value="$(arg ID)" />
+		<param name="target_component_id" value="1" />
+		<param name="fcu_protocol" value="v2.0" />
+		<!-- load blacklist, config -->
+		<rosparam command="load" file="$(arg pluginlists_yaml)" />
+		<rosparam command="load" file="$(arg config_yaml)" />
+		 <!--added by Peixuan Shu to receive statustext-->
+		<param name="conn/heartbeat_mav_type" value="GCS"/>
+	</node>
+        <!--include file="$(find mavros)/launch/px4.launch">
             <arg name="fcu_url" value="$(arg fcu_url)"/>
             <arg name="gcs_url" value=""/>
             <arg name="tgt_system" value="$(arg ID)"/>
             <arg name="tgt_component" value="1"/>
-        </include>
+        </include-->
     </group>
 </launch>
