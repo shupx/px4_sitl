@@ -25,6 +25,9 @@
     <arg name="world_origin_longitude_deg" default="116.0867398"/>
     <arg name="world_origin_AMSL_alt_metre" default="488.0"/>    
     
+    <!-- xlink -->
+    <arg name="xlink_vehicle_type" default="vtol"/>
+    
     <!-- Gazebo world -->
     <group if="$(arg enable_gzserver)">
 	    <include file="$(find px4_sitl)/launch/empty_world.launch">
@@ -71,9 +74,11 @@
             
     </group>
     
-        <!-- xfly sky end -->
-        <include file="$(find xfly)/launch/sim_vtol.launch">
+        <!-- xcommunication sky end -->
+        <include file="$(find xlink_manager)/launch/sim_xlink_manager.launch">
             <arg name="namespace" value="$(arg namespace)"/>
+            <arg name="vehicle_type" value="$(arg xlink_vehicle_type)"/>
+            <arg name="id" value="$(arg ID)"/>
         </include>
     
         <!-- Visualize in rviz -->
