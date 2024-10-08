@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="vehicle" default="standard_vtol"/> <!-- iris, plane, standard_vtol -->
+    <arg name="gazebo_gui" default="true"/> <!-- launch gazebo UI -->
+    <arg name="world" default="$(find px4_sitl)/worlds/empty.world"/>
+    
+	<include file="$(find px4_sitl)/launch/empty_world.launch">
+		<arg name="gui" value="$(arg gazebo_gui)"/>
+		<arg name="world_name" value="$(arg world)"/>
+	</include>
+
+	<include file="$(find px4_sitl)/launch/single_mavros_px4_gazebo_sitl.launch">
+	    <arg name="ID" value="1"/>
+	    <arg name="namespace" value="uav1"/>
+	    <arg name="x" value="0"/>
+	    <arg name="y" value="0"/>
+	    <arg name="z" value="0"/>
+	    <arg name="R" value="0"/>
+	    <arg name="P" value="0"/>
+	    <arg name="Y" value="0"/>
+	    <arg name="vehicle" value="$(arg vehicle)"/>
+	    <arg name="enable_gzserver" value="false"/>
+	</include>
+
+	<include file="$(find px4_sitl)/launch/single_mavros_px4_gazebo_sitl.launch">
+	    <arg name="ID" value="2"/>
+	    <arg name="namespace" value="uav2"/>
+	    <arg name="x" value="2"/>
+	    <arg name="y" value="0"/>
+	    <arg name="z" value="0"/>
+	    <arg name="R" value="0"/>
+	    <arg name="P" value="0"/>
+	    <arg name="Y" value="0"/>
+	    <arg name="vehicle" value="$(arg vehicle)"/>
+	    <arg name="enable_gzserver" value="false"/>
+	</include>
+
+	<include file="$(find px4_sitl)/launch/single_mavros_px4_gazebo_sitl.launch">
+	    <arg name="ID" value="3"/>
+	    <arg name="namespace" value="uav3"/>
+	    <arg name="x" value="4"/>
+	    <arg name="y" value="0"/>
+	    <arg name="z" value="0"/>
+	    <arg name="R" value="0"/>
+	    <arg name="P" value="0"/>
+	    <arg name="Y" value="0"/>
+	    <arg name="vehicle" value="$(arg vehicle)"/>
+	    <arg name="enable_gzserver" value="false"/>
+	</include>
+    
+</launch>

@@ -41,17 +41,23 @@ source devel/setup.bash
 # source install/setup.bash
 ```
 
-Run the simulation:
+- Run the simulation for single vehicle (You will launch `PX4 software simulation` + `gazebo gzserver` + `gazebo_ros vehicle spawn` + `mavros node`):
 
 ```bash
 roslaunch px4_sitl single_mavros_px4_gazebo_sitl.launch vehicle:=iris gazebo_gui:=true
-
-### Instruction:
-vehicle: iris, plane, standard_vtol # px4 sitl vehicle type
-gazebo_gui: true, false # open gazebo UI or not
 ```
 
-You will launch `PX4 software simulation` + `gazebo gzserver` + `gazebo_ros vehicle spawn` + `mavros node`.
+`vehicle` options: `iris` (quadrotor), `plane`, `standard_vtol`
+
+`gazebo_gui` determines whether to open gazebo UI.
+
+- Run the simulation for multiple vehicles (example):
+
+```bash
+roslaunch px4_sitl multi_mavros_px4_gazebo_sitl.launch vehicle:=standard_vtol gazebo_gui:=true
+```
+
+![img](pictures/demo.png)
 
 ## Develop
 
