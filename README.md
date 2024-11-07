@@ -34,11 +34,10 @@ catkin_make install
 
 ## Usage
 
-Source the bash script either in `devel/` or in `install/`.
+Source the bash script in `install/` (** DO NOT `source devel/setup.bash` **).
 
 ```bash
-source devel/setup.bash
-# source install/setup.bash
+source install/setup.bash
 ```
 
 - Run the simulation for single vehicle (You will launch `PX4 software simulation` + `gazebo gzserver` + `gazebo_ros vehicle spawn` + `mavros node`):

@@ -93,9 +93,26 @@ include_directories(
 #    DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}/${PROJECT_NAME}
 # )
 
-install(DIRECTORY build
+# 1. 已经编译好的动态链接库必须放在install/lib下面，才能被 echo $LD_LIBRARY_PATH 找到
+# 2. 另外这些动态链接库还必须被gazebo_ros找到，因此还需要在px4_sitl的package.xml中添加
+#  <gazebo_ros plugin_path="${prefix}/../../lib"/> 其中${prefix}表示install/share/px4_sitl
+# 确保rospack plugins --attrib=plugin_path gazebo_ros能找到这些动态链接库
+install(DIRECTORY build/px4_sitl_default/build_gazebo-classic/
   USE_SOURCE_PERMISSIONS # copy file permissions from the source directory structure
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+  DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+)
+
+# 可执行程序（node节点）必须放在 install/lib/包名 目录下面，才能被rosrun找到
+install(DIRECTORY build/px4_sitl_default/bin
+  USE_SOURCE_PERMISSIONS # copy file permissions from the source directory structure
+  DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}/px4_sitl
+)
+
+# single_vehicle_spawn_sdf.launch中用到了$(find px4_sitl)/build/px4_sitl_default/etc，
+# 所以etc文件夹必须放在install/share/px4_sitl/build/px4_sitl_default下面
+install(DIRECTORY build/px4_sitl_default/etc
+  USE_SOURCE_PERMISSIONS # copy file permissions from the source directory structure
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/build/px4_sitl_default
 )
 
 # directory
@@ -110,5 +127,6 @@ install(DIRECTORY models
 install(DIRECTORY worlds
 	DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
+
 
 

@@ -66,9 +66,10 @@
   <export>
     <!-- Other tools can request additional information be placed here -->
     <gazebo_ros
-      plugin_path="${prefix}/build/px4_sitl_default/build_gazebo-classic"
+      plugin_path="${prefix}/../../lib"
       gazebo_media_path="${prefix}"
       gazebo_model_path="${prefix}/models"
       />
+    <!-- plugin_path="${prefix}/build/px4_sitl_default/build_gazebo-classic"-->
   </export>
 </package>
