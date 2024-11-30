@@ -49,12 +49,17 @@
         <!-- MAVROS -->
         <arg name="local_port" value="$(eval 14540+arg('ID')-1 if arg('ID')&lt;10 else 14549)"/>
         <arg name="sitl_port" value="$(eval 14580 + arg('ID') -1)"/>
+        <arg name="gcs_local_port" value="$(eval 6500+arg('ID'))"/>
+        <arg name="gcs_remote_port" value="$(eval 6600 + arg('ID'))"/>
         <arg name="fcu_url" default="udp://:$(arg local_port)@localhost:$(arg sitl_port)"/>
+        <arg name="gcs_url" default="udp-b://:$(arg gcs_local_port)@:$(arg gcs_remote_port)"/>
 	<arg name="pluginlists_yaml" value="$(find mavros)/launch/px4_pluginlists.yaml" />
 	<arg name="config_yaml" value="$(find mavros)/launch/px4_config.yaml" />
 	<node pkg="mavros" type="mavros_node" name="mavros" required="false" clear_params="true" output="screen" respawn="false">
 		<param name="fcu_url" value="$(arg fcu_url)" />
-		<param name="gcs_url" value="" />
+		<param name="gcs_url" value="$(arg gcs_url)" /> <!-- for remote real onboard computer mavros-->
+		<!--param name="gcs_url" value="udp://:14560@192.168.31.150:9010" /-->
+		<!--param name="gcs_url" value="udp-b://:6001@:7001" /-->
 		<param name="target_system_id" value="$(arg ID)" />
 		<param name="target_component_id" value="1" />
 		<param name="fcu_protocol" value="v2.0" />
