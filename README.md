@@ -4,6 +4,8 @@ This is a ROS package containing the px4 SITL (Software In The Loop) targets and
 
 ## Dependencies
 
+Environment: Ubuntu20.04 wih ROS1 installed.
+
 ```bash
 sudo apt install ros-noetic-mavros ros-noetic-mavros-extras -y
 wget https://gitee.com/shu-peixuan/ros-install-command/raw/c9865c748045a0cce0173fcfcb95729784bd31e5/install_geographiclib_datasets.sh
@@ -13,8 +15,8 @@ rm install_geographiclib_datasets.sh
 ```
 
 ```bash
-sudo apt install gazebo11 -y
-sudo apt install ros-noetic-gazebo-ros -y
+sudo apt install --no-upgrade gazebo11 -y
+sudo apt install --no-upgrade ros-noetic-gazebo-ros -y
 sudo apt install xmlstarlet 
 ```
 
