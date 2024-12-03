@@ -20,7 +20,10 @@ sudo apt install xmlstarlet
 
 PX4 SITL build version:
 
-v1.14.3 (with modified fixed-wing offboard mode in which PX4 receives roll/height/airspeed setpoints).
+v1.14.3 with the following modification (see also https://gitee.com/bhswift/fixed-wing-px4-modify.git):
+
+1. Changed fixed-wing offboard mode in which PX4 can receives roll/height/airspeed setpoints.
+2. Fix the gazebo_mavlink_interface.cpp plugin to allow multiple vehicle simulation acceleration (PX4_SIM_SPEED_FACTOR != 1).
 
 ## Build
 
@@ -34,26 +37,29 @@ catkin_make install
 
 ## Usage
 
-Source the bash script in `install/` (** DO NOT `source devel/setup.bash` **).
+Source the bash script in `install/` (**DO NOT `source devel/setup.bash`**).
 
 ```bash
 source install/setup.bash
 ```
 
-- Run the simulation for single vehicle (You will launch `PX4 software simulation` + `gazebo gzserver` + `gazebo_ros vehicle spawn` + `mavros node`):
+### Run the simulation for single vehicle 
+
+You will launch `PX4 software simulation` + `gazebo gzserver` + `gazebo_ros vehicle spawn` + `mavros node`:
 
 ```bash
-roslaunch px4_sitl single_mavros_px4_gazebo_sitl.launch vehicle:=iris gazebo_gui:=true
+roslaunch px4_sitl single_mavros_px4_gazebo_sitl.launch vehicle:=iris gazebo_gui:=true PX4_SIM_SPEED_FACTOR:=1
 ```
 
-`vehicle` options: `iris` (quadrotor), `plane`, `standard_vtol`
+- `vehicle` options: `iris` (quadrotor), `plane`, `standard_vtol`
 
-`gazebo_gui` determines whether to open gazebo UI.
+- `gazebo_gui` determines whether to open gazebo UI.
+- `PX4_SIM_SPEED_FACTOR`: max simulation speed (less than 10 is appropriate).
 
-- Run the simulation for multiple vehicles (example):
+### Run the simulation for multiple vehicles:
 
 ```bash
-roslaunch px4_sitl multi_mavros_px4_gazebo_sitl.launch vehicle:=standard_vtol gazebo_gui:=true
+roslaunch px4_sitl multi_mavros_px4_gazebo_sitl.launch vehicle:=standard_vtol gazebo_gui:=true PX4_SIM_SPEED_FACTOR:=1
 ```
 
 ![img](pictures/demo.png)
@@ -72,6 +78,8 @@ and substitute the `build/px4_sitl_default/bin` folder:
 ```bash
 cp -r ~/PX4-Autopilot/build/px4_sitl_default/bin ~/px4_sitl_ws/src/px4_sitl/build/px4_sitl_default/bin
 ```
+
+The modified gazebo plugins in `PX4-Autopilot/build/px4_sitl_default/build_gazebo-classic` should be moved to `build/px4_sitl_default/build_gazebo-classic` as well.
 
 ### Instructions:
 

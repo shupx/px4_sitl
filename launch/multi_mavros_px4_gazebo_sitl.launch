@@ -3,10 +3,12 @@
     <arg name="vehicle" default="standard_vtol"/> <!-- iris, plane, standard_vtol -->
     <arg name="gazebo_gui" default="true"/> <!-- launch gazebo UI -->
     <arg name="world" default="$(find px4_sitl)/worlds/empty.world"/>
+    <arg name="PX4_SIM_SPEED_FACTOR" default="1.0"/>
     
 	<include file="$(find px4_sitl)/launch/empty_world.launch">
 		<arg name="gui" value="$(arg gazebo_gui)"/>
 		<arg name="world_name" value="$(arg world)"/>
+		<arg name="PX4_SIM_SPEED_FACTOR" value="$(arg PX4_SIM_SPEED_FACTOR)"/>
 	</include>
 
 	<include file="$(find px4_sitl)/launch/single_mavros_px4_gazebo_sitl.launch">
