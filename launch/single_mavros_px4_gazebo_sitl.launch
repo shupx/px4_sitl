@@ -11,7 +11,7 @@
     <arg name="enable_gzserver" default="true"/> <!-- launch world -->
     <arg name="gazebo_gui" default="true"/> <!-- launch gazebo UI -->
     <arg name="world" default="$(find px4_sitl)/worlds/empty.world"/>
-    <arg name="PX4_SIM_SPEED_FACTOR" default="1.0"/>
+    <!-- arg name="PX4_SIM_SPEED_FACTOR" default="1.0"/-->
     
     <!-- vehicle initial pose -->
     <arg name="x" default="0"/>
@@ -27,7 +27,7 @@
 	    <include file="$(find px4_sitl)/launch/empty_world.launch">
 		<arg name="gui" value="$(arg gazebo_gui)"/>
 		<arg name="world_name" value="$(arg world)"/>
-		<arg name="PX4_SIM_SPEED_FACTOR" value="$(arg PX4_SIM_SPEED_FACTOR)"/>
+		<!-- arg name="PX4_SIM_SPEED_FACTOR" value="$(arg PX4_SIM_SPEED_FACTOR)"/-->
 	    </include>
     </group>
     
