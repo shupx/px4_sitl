@@ -14,7 +14,7 @@
     <arg name="vehicle" default="standard_vtol"/>
     <arg name="ID" default="1"/>
     <env name="PX4_SIM_MODEL" value="gazebo-classic_$(arg vehicle)" />
-    <env name="PX4_SIM_SPEED_FACTOR" value="1.0" />
+    <!-- env name="PX4_SIM_SPEED_FACTOR" value="1.0" /-->  <!-- no use here-->
     <arg name="mavlink_udp_port" default="14560"/>  <!-- no use here-->
     <arg name="mavlink_tcp_port" default="4560"/>
     <!-- PX4 configs -->

@@ -50,7 +50,8 @@ source install/setup.bash
 You will launch `PX4 software simulation` + `gazebo gzserver` + `gazebo_ros vehicle spawn` + `mavros node`:
 
 ```bash
-roslaunch px4_sitl single_mavros_px4_gazebo_sitl.launch vehicle:=iris gazebo_gui:=true PX4_SIM_SPEED_FACTOR:=1
+export PX4_SIM_SPEED_FACTOR=1
+roslaunch px4_sitl single_mavros_px4_gazebo_sitl.launch vehicle:=iris gazebo_gui:=true
 ```
 
 - `vehicle` options: `iris` (quadrotor), `plane`, `standard_vtol`
@@ -61,7 +62,8 @@ roslaunch px4_sitl single_mavros_px4_gazebo_sitl.launch vehicle:=iris gazebo_gui
 ### Run the simulation for multiple vehicles:
 
 ```bash
-roslaunch px4_sitl multi_mavros_px4_gazebo_sitl.launch vehicle:=standard_vtol gazebo_gui:=true PX4_SIM_SPEED_FACTOR:=1
+export PX4_SIM_SPEED_FACTOR=1
+roslaunch px4_sitl multi_mavros_px4_gazebo_sitl.launch vehicle:=standard_vtol gazebo_gui:=true
 ```
 
 ![img](pictures/demo.png)

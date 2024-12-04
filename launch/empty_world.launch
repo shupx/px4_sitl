@@ -29,8 +29,10 @@
     <arg name="world_origin_altitude" default="488.0"/>
     <arg name="cmd" default="xmlstarlet ed -u '//spherical_coordinates/latitude_deg' -v '$(arg world_origin_latitude_deg)' -u '//spherical_coordinates/longitude_deg' -v '$(arg world_origin_longitude_deg)' -u '//spherical_coordinates/elevation' -v '$(arg world_origin_altitude)' $(arg world_name)"/>
     <param command="$(arg cmd)" name="world_xml"/-->
-  <arg name="PX4_SIM_SPEED_FACTOR" default="1.0"/>
-  <env name="PX4_SIM_SPEED_FACTOR" value="$(arg PX4_SIM_SPEED_FACTOR)"/>
+    
+    <!-- Added by Peixuan Shu -->
+  <!-- arg name="PX4_SIM_SPEED_FACTOR" default="1.0"/-->
+  <!-- env name="PX4_SIM_SPEED_FACTOR" value="$(arg PX4_SIM_SPEED_FACTOR)"/-->
 
   <!-- set use_sim_time flag -->
   <param name="/use_sim_time" value="$(arg use_sim_time)"/>
