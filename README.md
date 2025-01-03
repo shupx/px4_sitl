@@ -20,11 +20,33 @@ sudo apt install --no-upgrade ros-noetic-gazebo-ros -y
 sudo apt install xmlstarlet 
 ```
 
-PX4 SITL build version:
+**IMPORTANT** : gazebo11 version has to be newer than 1.15.1. (**v1.15.0 has been proven to be incompatible**).
 
-v1.14.3 with the following modification (see also https://gitee.com/bhswift/fixed-wing-px4-modify.git):
+```bash
+gazebo -v # check your gazebo version (should be newer than v1.15.1)
+```
 
-1. Changed fixed-wing offboard mode in which PX4 can receives roll/height/airspeed setpoints.
+The default version of gazebo11 in the ubuntu apt source is v1.11.0. You have to add the following Gazebo binary repository：
+
+```bash
+sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > '
+wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+# Update list, since new gazebo-stable.list has been added
+sudo apt-get update -y --quiet
+sudo apt-get install gazebo11 libgazebo11-dev -y
+```
+
+or simply use the scripts:
+
+```bash
+./upgrade_gazebo.sh
+```
+
+**PX4 SITL build version**:
+
+`v1.14.3` with the following modification (see also https://gitee.com/bhswift/fixed-wing-px4-modify.git):
+
+1. Changed fixed-wing offboard mode in which PX4 can receives roll/height/airspeed setpoints. (no influence on the original PX4 offboard commands).
 2. Fix the gazebo_mavlink_interface.cpp plugin to allow multiple vehicle simulation acceleration (PX4_SIM_SPEED_FACTOR != 1).
 
 ## Build
@@ -50,7 +72,7 @@ source install/setup.bash
 You will launch `PX4 software simulation` + `gazebo gzserver` + `gazebo_ros vehicle spawn` + `mavros node`:
 
 ```bash
-export PX4_SIM_SPEED_FACTOR=1
+export PX4_SIM_SPEED_FACTOR=1 # optional
 roslaunch px4_sitl single_mavros_px4_gazebo_sitl.launch vehicle:=iris gazebo_gui:=true
 ```
 
@@ -62,7 +84,7 @@ roslaunch px4_sitl single_mavros_px4_gazebo_sitl.launch vehicle:=iris gazebo_gui
 ### Run the simulation for multiple vehicles:
 
 ```bash
-export PX4_SIM_SPEED_FACTOR=1
+export PX4_SIM_SPEED_FACTOR=1 # optional
 roslaunch px4_sitl multi_mavros_px4_gazebo_sitl.launch vehicle:=standard_vtol gazebo_gui:=true
 ```
 
